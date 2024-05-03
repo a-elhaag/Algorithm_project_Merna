@@ -1,8 +1,8 @@
 import algorithm
 import tkinter as tk
 from tkinter import messagebox
-import time
 
+# Linear search algorithm click event
 def linear_search_click():
     data_str = data_entry.get()
     target_str = target_entry.get()
@@ -12,27 +12,25 @@ def linear_search_click():
         target = int(target_str)
         result = algorithm.linear_search(data, target)
 
-        
-
         if result != -1:
             messagebox.showinfo("Linear Search Result", result)
         else:
-            messagebox.showinfo("Linear Search Result", "Target not found")
-
+            result_label.config(text="Target not found.")
     except ValueError:
         result_label.config(text="Invalid input. Please enter comma-separated numbers.")
 
+# Selection sort algorithm click event
 def selection_sort_click():
     data_str = data_entry.get()
 
     try:
         data = [int(x) for x in data_str.split(',')]
         result = algorithm.selection_sort(data)
-        result_label.config(text=f"Sorted data: {result}")
+        messagebox.showinfo("Selection Sort Result", result)
     except ValueError:
         result_label.config(text="Invalid input. Please enter comma-separated numbers.")
 
-
+# Binary search algorithm click event
 def binary_search_click():
     data_str = data_entry.get()
     target_str = target_entry.get()
@@ -43,19 +41,20 @@ def binary_search_click():
         result = algorithm.binary_search(data, target)
 
         if result != -1:
-            result_label.config(text=f"Target found at index {result}")
+            messagebox.showinfo("Binary Search Result", result)
         else:
             result_label.config(text="Target not found")
     except ValueError:
-        messagebox.showerror("Error", "Invalid input. Please enter comma-separated numbers.")
+        result_label.config(text="Invalid input. Please enter comma-separated numbers.")
 
+# Bubble sort algorithm click event
 def bubble_sort_click():
     data_str = data_entry.get()
 
     try:
         data = [int(x) for x in data_str.split(',')]
         result = algorithm.bubble_sort(data)
-        result_label.config(text=f"Sorted data: {result}")
+        messagebox.showinfo("Bubble Sort Result", result)
     except ValueError:
         result_label.config(text="Invalid input. Please enter comma-separated numbers.")
 
@@ -97,7 +96,7 @@ bubble_button = tk.Button(buttons_frame, text="Bubble Sort", command=bubble_sort
 bubble_button.grid(row=1, column=1, padx=10, pady=5)
 
 # Result Label
-result_label = tk.Label(window, text="", width=40, relief="sunken", anchor="w", bg="#2c3e50", fg="white")
+result_label = tk.Label(window, text="", width=40, anchor="w", bg="#2c3e50", fg="white")
 result_label.place(relx=0.5, rely=0.7, anchor=tk.CENTER)
 
 window.mainloop()
