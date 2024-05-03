@@ -1,9 +1,13 @@
 # Linear search algorithm
 def linear_search(data, target):
-  for i in range(len(data)):
-    if data[i] == target:
-      return i  # Found it!
-  return -1  # Not found
+    steps = []  # Store steps for printing
+    for i in range(len(data)):
+        steps.append(f"Step {i+1}: Comparing {data[i]} with {target}")
+        if data[i] == target:
+            output = f"Target found at index {i}" + "\n" + "\n".join(steps)	
+            return output  # Found it!
+    steps.append("Target not found")
+    return -1, steps  # Not found
 
 # Sorting algorithm
 def selection_sort(data):
